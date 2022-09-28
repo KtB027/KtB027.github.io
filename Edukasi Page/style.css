@@ -1,0 +1,794 @@
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif ;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ START- NAVIGATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #7c4202;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open{
+  width: 250px;
+}
+
+.logo-details img{
+  height: 40px;
+  width: 140px;
+
+}
+.sidebar .logo-details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details img{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details img{
+  opacity: 1;
+}
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+  display: none;
+}
+.sidebar input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #efd870;
+}
+.sidebar.open input{
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #efd870;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #11101d;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #efd870;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #efd870;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #efd870;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+.home-section{
+    position: relative;
+    background: #faecab;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+.sidebar.open ~ .home-section{
+  left: 78px;
+  width: calc(100% - 78px);
+}
+
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END-NAVIGATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.posisi{
+  float: right;
+  position: relative;
+  margin: 50px;
+  z-index: 5;
+}
+
+#garis1 {
+  display: inline-block;
+}
+
+#garis1:nth-child(1) {
+  margin-left: 30px;
+  font-size: 20px;
+  transform: translateY(3px);
+}
+
+#garis1:nth-child(2) {
+  margin-left: 20px;
+}
+
+#search-input {
+  width: 250px;
+  height: 20px;
+  padding: 10px 15px;
+  background: #fff3ce;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  border-radius: 50px;
+}
+
+#garis2 {
+  display: inline-block;
+}
+
+#garis2:nth-child(2) {
+  margin-right: 20px;
+}
+
+#garis2:nth-child(4) {
+  margin-right: 50px;
+}
+
+.btndrop {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #f5f5f5;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  right: 0;
+  border-radius: 10px;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+.show {
+  display: block;
+}
+
+#garis2 a {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.rectangle {
+  width: 20px;
+  height: 20px;
+  background: #73ca00;
+  border-radius: 5px;
+  transform: translateY(5px);
+  border-radius: 50px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EDUKASI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.edukasi{
+  height: auto;
+  width: 100%;
+  position: relative;
+  top: -20px;
+
+}
+
+.edukasi-text{
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+ .edukasi-text h1{
+  font-size: 60px;
+  font-weight: bold;
+  color: #7c4202;
+  text-shadow: 1px 1px 10px #efd870 ;
+
+ }
+
+ .edukasi-card{
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  align-items: center;
+ }
+
+ .edukasi-card-1{
+  position: relative;
+  height: 320px ;
+  width: 300px;
+  box-shadow: 1px 1px 10px rgb(0 0 0 / 10%);
+  border-radius: 40px;
+  margin: 0;
+  overflow: hidden;
+  margin-right: 50px;
+
+ }
+
+ .edukasi-card-1-img{
+  height: 210px;
+  width: 300px;
+  background-color: #7c4202;
+  border-radius: 40px 40px 0 0;
+  box-sizing: border-box;
+  z-index: 5;
+  position: absolute;
+
+ }
+
+ .edukasi-card-1-text{
+  position:relative;
+  height: 110px;
+  width: 300px ;
+  background-color: #efd870;
+  border-radius: 0 0 40px 40px;
+  top: 210px;
+  padding: 10px 20px;
+ }
+
+ .edukasi-card-1-text h2{
+  font-size: 25px;
+  font-weight: bold;
+  color: #7c4202 ;
+
+ }
+
+ .edukasi-card-1-text p{
+  font-size: 12px;
+  color: #7c4202;
+  padding-top: 3px;
+ }
+
+
+
+
+
+
+ .edukasi-card-2{
+  position: relative;
+  height: 320px ;
+  width: 300px;
+  box-shadow: 1px 1px 10px rgb(0 0 0 / 10%);
+  border-radius: 40px;
+  margin: 0;
+  overflow: hidden;
+  margin-right: 50px;
+
+ }
+
+ .edukasi-card-2-img{
+  height: 210px;
+  width: 300px;
+  background-color: #7c4202;
+  border-radius: 40px 40px 0 0;
+  box-sizing: border-box;
+  z-index: 5;
+  position: absolute;
+
+ }
+
+ .edukasi-card-2-text{
+  position:relative;
+  height: 110px;
+  width: 300px ;
+  background-color: #efd870;
+  border-radius: 0 0 40px 40px;
+  top: 210px;
+  padding: 10px 20px;
+ }
+
+ .edukasi-card-2-text h2{
+  font-size: 25px;
+  font-weight: bold;
+  color: #7c4202 ;
+
+ }
+
+ .edukasi-card-2-text p{
+  font-size: 12px;
+  color: #7c4202;
+  padding-top: 3px;
+ }
+
+
+
+
+
+ .edukasi-card-3{
+  position: relative;
+  height: 320px ;
+  width: 300px;
+  box-shadow: 1px 1px 10px rgb(0 0 0 / 10%);
+  border-radius: 40px;
+  margin: 0;
+  overflow: hidden;
+
+ }
+
+ .edukasi-card-3-img{
+  height: 210px;
+  width: 300px;
+  background-color: #7c4202;
+  border-radius: 40px 40px 0 0;
+  box-sizing: border-box;
+  z-index: 5;
+  position: absolute;
+
+ }
+
+ .edukasi-card-3-text{
+  position:relative;
+  height: 110px;
+  width: 300px ;
+  background-color: #efd870;
+  border-radius: 0 0 40px 40px;
+  top: 210px;
+  padding: 10px 20px;
+ }
+
+ .edukasi-card-3-text h2{
+  font-size: 25px;
+  font-weight: bold;
+  color: #7c4202 ;
+
+ }
+
+ .edukasi-card-3-text p{
+  font-size: 12px;
+  color: #7c4202;
+  padding-top: 3px;
+ }
+
+ .share-content{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  margin-top: 30px;
+ }
+
+ .share-content img{
+  height: 20px ;
+  width: 20px;
+  padding: 0;
+  margin-right:5px ;
+ }
+
+ /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RESPONSIVE WEBSITE 1000px ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media only screen and (max-width: 1000px){
+
+  .edukasi{
+    top:15px ; 
+  }
+
+  .edukasi-text h1 {
+    font-size: 50px;
+  }
+
+  .edukasi-card{
+    margin-top: 70px;
+  }
+
+  .edukasi-card-1{
+    height: 280px;
+    width: 250px;
+ }
+
+  .edukasi-card-1-img{
+    height: 170px;
+    width: 250px;
+ }
+
+  .edukasi-card-1-text{
+  height: 110px;
+  width: 250px ;
+  top: 170px;
+ }
+
+  .edukasi-card-1-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-1-text p {
+    font-size: 10px;
+}
+
+  .edukasi-card-2{
+    height: 280px;
+    width: 250px;
+ }
+
+  .edukasi-card-2-img{
+    height: 170px;
+    width: 250px;
+ }
+
+  .edukasi-card-2-text{
+  height: 110px;
+  width: 250px ;
+  top: 170px;
+ }
+
+  .edukasi-card-2-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-2-text p {
+    font-size: 10px;
+}
+
+  .edukasi-card-3{
+    height: 280px;
+    width: 250px;
+ }
+  .edukasi-card-3-img{
+    height: 170px;
+    width: 250px;
+ }
+
+  .edukasi-card-3-text{
+  height: 110px;
+  width: 250px ;
+  top: 170px;
+ }
+
+  .edukasi-card-3-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-3-text p {
+    font-size: 10px;
+}
+   
+
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RESPONSIVE WEBSITE 768px ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media only screen and (max-width: 768px){
+
+  .posisi{
+    margin: 20px 0px 60px 15px;
+  }
+
+  .edukasi{
+    top:15px ; 
+  }
+
+  .edukasi-text h1 {
+    font-size: 40px;
+  }
+
+  .edukasi-card{
+    margin-top: 70px;
+  }
+
+  .edukasi-card-1{
+    height: 280px;
+    width: 200px;
+    margin-right: 15px;
+ }
+
+  .edukasi-card-1-img{
+    height: 170px;
+    width: 200px;
+ }
+
+  .edukasi-card-1-text{
+  height: 110px;
+  width: 200px;
+  top: 170px;
+ }
+
+  .edukasi-card-1-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-1-text p {
+    font-size: 9px;
+}
+
+  .edukasi-card-2{
+    height: 280px;
+    width: 200px;
+    margin-right: 15px;
+ }
+
+  .edukasi-card-2-img{
+    height: 170px;
+    width: 200px;
+ }
+
+  .edukasi-card-2-text{
+  height: 110px;
+  width: 200px;
+  top: 170px;
+ }
+
+  .edukasi-card-2-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-2-text p {
+    font-size: 9px;
+}
+
+  .edukasi-card-3{
+    height: 280px;
+    width: 200px;
+ }
+  .edukasi-card-3-img{
+    height: 170px;
+    width: 200px;
+ }
+
+  .edukasi-card-3-text{
+  height: 110px;
+  width: 200px;
+  top: 170px;
+ }
+
+  .edukasi-card-3-text h2 {
+    font-size: 20px;
+}
+
+  .edukasi-card-3-text p {
+    font-size: 9px;
+}
+
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RESPONSIVE WEBSITE 360px ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media only screen and (max-width: 360px){
+  .rectangle {
+    width: 17px;
+    height: 17px;
+
+  }
+
+  .btndrop{
+    font-size: 12px;
+  }
+
+  #garis2 a{
+    font-size: 12px;
+  }
+
+  #garis2:nth-child(4) {
+    margin-right: 15px;
+}
+
+  .posisi{
+        margin: 20px 0px 40px 15px;
+  }
+  .edukasi-text h1 {
+    font-size: 27px;
+}
+
+  .edukasi-card{
+    display: block;
+  }
+
+  .edukasi-card-1{
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .edukasi-card-2{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+  }
+
+  .edukasi-card-3{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+  }
+
+  .share-content{
+    background: #faecab;
+  }
+
+}
