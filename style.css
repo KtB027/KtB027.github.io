@@ -1,0 +1,888 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif ;
+}
+
+body{
+	background-color: #fdf7d3;
+	min-height: 100hv;
+	height: 100%; 
+
+}
+html{
+	height: 100%;
+}
+
+header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 30px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+}
+
+.logo img{
+    width: 140pt;
+    height: 45pt;
+}
+
+header .logo{
+    float: left;
+}
+
+header ul{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header li{
+	list-style: none;
+	margin-left: 15px;
+}
+
+header ul li a{
+	text-decoration: none;
+	padding: 15px 15px;
+	border-radius: 25px;
+	color: #753f0a;
+
+}
+
+header ul .link-Beranda{
+	transition: 0.5s;
+	padding: 15px 0px;
+	width: 85px;
+	text-align: center;
+	border-radius: 25px;
+}
+header ul .link-Beranda:hover{
+	background-color: #fff;
+
+}
+
+header .link-login{
+	background-color: #99b90e;
+	color: #ffffff;
+	transition: 0.5s;
+	padding: 15px 0px;
+	width: 85px;
+	text-align: center;
+	border-radius: 25px;
+
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LOGIN POPUP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+.center{
+    position: relative;
+    float: right;
+}
+
+.center button{
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    background: #f5f5f5;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.25) ;
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+
+}
+.popup.active{
+	position: fixed;
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1) ;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+}
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup .form h2{
+    text-align: center;
+    color: #222;
+    margin: 10px 0 20px;
+    font-size: 25px;
+}
+
+.popup .form .form-element{
+    margin: 15px 0px;
+}
+
+.popup .form .form-element label{
+    font-size: 14px;
+    color: #222;
+}
+
+.popup .form .form-element input[type="text"],
+.popup .form .form-element input[type="password"] {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form-element a{
+    text-decoration: none;
+    color: #99b90e;
+}
+
+
+.popup .form .form-element button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.popup.form .form-element a{
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    color: #1a79ca;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register {
+    display: flex;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.register p{
+    margin-right: 7px;
+	font-size: 14px;
+
+
+}
+
+#registration{
+	color: #99b90e;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+.popup-register{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.25) ;
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+
+}
+.popup-register.active{
+	position: fixed;
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1) ;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+}
+.popup-register .close-btn-register{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup-register .form-register h2{
+    text-align: center;
+    color: #222;
+    margin: 10px 0 20px;
+    font-size: 25px;
+}
+
+.popup-register .form-register .form-element-register{
+    margin: 15px 0px;
+}
+
+.popup-registerp .form-register .form-element-register label{
+    font-size: 14px;
+    color: #222;
+}
+
+.popup-register .form-register .form-element-register input[type="text"],
+.popup-register .form-register .form-element-register input[type="password"] {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form-element-register a{
+    text-decoration: none;
+    color: #99b90e;
+}
+
+
+.popup-register .form-register .form-element-register button{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.popup-register .form-register .form-element-register a{
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    color: #1a79ca;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-account {
+    display: flex;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.register-account p{
+    margin-right: 7px;
+	font-size: 14px;
+}
+
+#login-back{
+	color: #99b90e;
+	cursor: pointer;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END LOGIN POPUP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+
+section{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 100px;
+	overflow: hidden;
+}
+
+section img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+}
+
+#sand{
+	top: 340px;
+}
+
+#hill{
+	top: -90px;
+	width: 120%;
+	transform: translateX(-10%);
+}
+
+#sun{
+	top: -50px;
+}
+
+#cloud{
+	z-index: -1;
+
+}
+
+#bruses{
+	position: absolute;
+	top: 40px;
+}
+
+#building{
+	z-index: 1;
+}
+
+#btn{
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 8px 30px;
+	border-radius: 25px;
+	color: #ffffff;
+	background-color: #abc503;
+	font-size: 1em;
+
+}
+
+.judul{
+	height: 100pt;
+	width: 500pt;
+	padding-top: 20px;
+	z-index: 2;
+}
+
+.text-judul{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	color: #753f0a;
+	padding-left:120px ;
+}
+
+.text-judul h1{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.text-judul p{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	padding-top: 5px;
+
+}
+
+.android{
+	padding-top:65px ;
+	padding-left:240px ;
+
+}
+
+.bg-hijau{
+	height: 100%;
+	width: 100%;
+	background-color:#99b90e ;
+	background-repeat: no-repeat;
+	object-fit: cover;
+	z-index: 1;
+}
+
+.about-us{
+	width: 100%;
+	height: 50%;
+	margin-bottom: 50px;
+	display: flex;
+}
+
+.about-us-text{
+	height:100%;
+	width: 50%;
+	padding-left:150px ;
+	padding-top: 100px;
+	color: #ffffff;
+}
+.about-us-text h1{
+	color: #fded77; 
+}
+.element-row{
+	height:100%;
+	width: 50%;
+}
+
+.carddesk{
+	width: 100%;
+	height: 38%;
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+.card-all{
+	width: 70%;
+	height: 100%;
+	padding-left: 30px;
+	font-family: 'Montserrat', sans-serif ;
+	display: flex;
+
+}
+.card-1{
+	height:250px ;
+	width: 450px;
+	background: #bcc427;
+	border-radius: 10px;
+	margin-left: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+}
+
+.card-1-text{
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 15pt ;
+
+}
+
+.card-1 h3{
+	color: #ffffff;
+	font-size: 18px;
+	padding: 0 20px;
+	position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+
+}
+
+.card-1 p{
+	color: #ffffff;
+	font-size: 11px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px 20px;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-1 img{
+	width: 120px;
+	height: 120px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -55px;
+}
+
+.card-2{
+	height:250px ;
+	width: 450px;
+	background: #bcc427;
+	border-radius: 10px;
+	margin-left: 10px;
+	box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+}
+
+.card-2-text{
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 15pt ;
+
+}
+
+.card-2 h3{
+	color: #ffffff;
+	font-size: 18px;
+	padding: 0 20px;
+	position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+
+}
+
+.card-2 p{
+	color: #ffffff;
+	font-size: 11px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px 20px;
+    display: flex;
+    box-sizing: border-box;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-2 img{
+	width: 120px;
+	height: 120px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -55px;
+}
+
+.card-3{
+	height:250px ;
+	width: 450px;
+	background: #bcc427;
+	border-radius: 10px;
+	margin-left: 10px;
+	box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+}
+
+.card-3-text{
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 15pt ;
+
+}
+
+.card-3 h3{
+	color: #ffffff;
+	font-size: 18px;
+	padding: 0 20px;
+	position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+
+}
+
+.card-3 p{
+	color: #ffffff;
+	font-size: 11px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px 20px;
+    display: flex;
+    box-sizing: border-box;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-3 img{
+	width: 120px;
+	height: 120px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -55px;
+}
+
+.card-4{
+	height:250px ;
+	width: 450px;
+	background: #bcc427;
+	border-radius: 10px;
+	margin-left: 10px;
+	box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+}
+.card-4-text{
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 15pt ;
+
+}
+
+.card-4 h3{
+	color: #ffffff;
+	font-size: 18px;
+	padding: 0 20px;
+	position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+
+}
+
+.card-4 p{
+	color: #ffffff;
+	font-size: 11px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px 20px;
+    display: flex;
+    box-sizing: border-box;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-4 img{
+	width: 120px;
+	height: 120px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: -55px;
+}
+
+.fitur{
+	height: 100%;
+	width: 100%;
+	margin-left: 100px;
+	font-family: 'Montserrat', sans-serif ;
+
+}
+
+.fitur h2{
+	font-size: 30px;
+	font-weight: bold;
+	color: #fded77;
+}
+
+.fitur ul{
+	padding-left:20px ;
+	line-height: 200%;
+
+}
+
+.fitur li{
+	font-size: 15px;
+	color: #ffffff;
+	letter-spacing: 1px;
+}
+
+.footer{
+	background-image: url(/img/1x/footer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300pt;
+    margin: 0;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	
+}
+
+.c{
+    margin: 0px 0px -70px 0px;
+    padding: 0px;
+}
+
+.c h3{
+	color: #ffffff;
+	font-size: 28px;
+	padding-bottom: 10px;
+}
+
+.g{
+    margin: 80px 0px 10px 0px;
+    padding: 0px;
+}
+
+.g h3{
+	color: #ffffff;
+	font-size: 20px;
+	padding-bottom: 3px;
+}
+.warp{
+    width: 50%;
+	padding-left: 100px;
+	display: flex;
+	align-items: center;
+
+}
+.warp2{
+    padding-left:250px;
+    width: 50%;
+
+}
+
+.logo-bawah{
+	align-items: center;
+	padding-right: 100px;
+	height: min-content;
+}
+
+.logo-bawah img{
+    height: 90px;
+    width: 270px;
+}
+
+.address{
+	color: #ffffff;
+}
+
+.address h2{
+	font-weight: bold;
+	font-size: 28px;
+	font-family: 'Montserrat', sans-serif ;
+}
+
+.address p{
+	width: 350px;
+	height: auto;
+	font-size: 15px;
+	padding:5px 0 0 5px ;
+
+	
+}
+
+.contact{
+	color: #ffffff;
+	padding-top:10px ;
+}
+
+.contact h2{
+	font-weight: bold;
+	font-size: 28px;
+	padding-top: 15px;
+}
+
+.contact p{
+	padding:5px 0 0 5px ;
+	font-size: 15px;
+}
+
+
+.social-menu{
+    height: 80px;
+}
+
+.social-menu ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.social-menu ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+.social-menu ul li .fa {
+    color: #000000;
+    font-size: 25px;
+    line-height: 50px;
+    transition: .5s;
+}
+.social-menu ul li .fa:hover {
+    color: #ffffff;
+}
+.social-menu ul li a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+    transition: 0.5s;
+    transform: translate(0,0px);
+}
+.social-menu ul li a:hover {
+    transform: rotate(0deg) skew(0deg) translate(0, -10px);
+}
+.social-menu ul li:nth-child(1) a:hover {
+    background-color:#fede40;
+}
+.social-menu ul li:nth-child(2) a:hover {
+    background-color: #fede40;
+}
+.social-menu ul li:nth-child(3) a:hover {
+    background-color: #fede40;
+}
+.social-menu ul li:nth-child(4) a:hover {
+    background-color: #fede40;
+}
+.social-menu ul li:nth-child(5) a:hover {
+    background-color: #fede40;
+}
+
+.g ul{
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+.g li{
+    list-style: none;
+    display: inline-block;
+}
+
+.g h3{
+    margin: 10px 0 5px 0;
+}
+
+.g img{
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    padding: 10px 5px;
+
+}
+
+.logo2{
+	width: 140pt;
+    height: 45pt;
+}
+
+
+
+
+
+
+
+
