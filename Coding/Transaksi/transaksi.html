@@ -1,0 +1,976 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--header-height: 48pt;
+				--carrousel-graphics-size: 180px;
+				--carrousel-font-size: 22pt;
+				--throw-animation-duration: 1.2s;
+				--header-font-size: 11pt;
+				--pop-up-mark-height: 48pt;
+
+				--color-1: #99b90e;
+				--color-2: #abc503;
+				--color-3: #dada14;
+				--color-4: #fede40;
+				--color-5: #f9dd67;
+				--color-6: #f9e575;
+				--color-7: #fded90;
+				--color-8: #dee29f;
+				--color-9: #cbc28e;
+				--color-10: #baad70;
+				--color-11: #7c4202;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			button {
+				cursor: pointer;
+			}
+
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			.content .setor-action {
+				height: 40%;
+				width: 100%;
+				position: absolute;
+				top: 60%;
+				padding: 0 15%;
+				justify-content: space-evenly;
+				flex-direction: column;
+			}
+
+			.setor-type {
+				width: 100%;
+				height: 60%;
+				position: absolute;
+				top: 0;
+			}
+
+			.setor-info {
+				width: 80%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+			}
+			.setor-info .stars{
+				height: 12pt;
+			}
+			.setor-info h2 {
+				font-size: 10pt;
+			}
+			.setor-info p {
+				font-size: 8pt;
+				text-align: left;
+			}
+
+			.setor-info-container, .setor-button {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.trash-info {
+				position: absolute;
+				left: 0;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+			.trash-info.active {
+				opacity: 1;
+			}
+
+			#info {
+				position: fixed;
+				top: calc(var(--header-height) + 16pt); left: 50%;
+				transform: translateX(-50%);
+				font-weight: 100;
+				text-align: center;
+				font-size: 9pt;
+			}
+
+			@media screen and (min-width: 768px){ 
+				:root{
+					--header-height: 48pt;
+					--carrousel-graphics-size: 360px;
+					--carrousel-font-size: 36pt;
+					--header-font-size: initial;
+					--font-size: initial;
+				}
+
+				.setor-type {
+					top: 15%;
+				}
+
+				.content .setor-action {
+					flex-direction: row;
+					justify-content: space-between;
+				}
+				.setor-info {
+					width: 60%;
+				}
+				.setor-info .stars {
+					height: 18pt;
+				}
+				.setor-info h2 {
+					font-size: 18pt;
+				}
+				.setor-info p {
+					font-size: initial;
+					text-align: justify;
+				}
+
+				.setor-info-container, .setor-button {
+					width: 50%;
+					display: flex;
+					align-items: center;
+				}
+				.setor-button {
+					justify-content: flex-end;
+				}
+				#info {
+					font-size: initial;
+				}
+			}
+
+			html, body {
+				height: 100%;
+				overflow: hidden;
+				font-family: 'Montserrat';
+				color: white;
+			}
+
+			.row {
+				display: flex;
+			}
+
+			.container {
+				width: 100%; height: 100%;
+				background: linear-gradient(90deg,#a2bf0f,rgb(208,211,20));
+				position: relative;
+			}
+			::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+			 	color: #7c4202;
+			 	opacity: 50%;
+			}
+
+			:-ms-input-placeholder { /* Internet Explorer 10-11 */
+				color: #7c4202;
+			 	opacity: 50%;
+			}
+
+			::-ms-input-placeholder { /* Microsoft Edge */
+				color: #7c4202;
+			 	opacity: 50%;
+			}
+
+			.header {
+				width: 100%;
+				height: calc(var(--header-height) - 8pt);
+				padding: 16pt 16pt 0 16pt;
+				display: flex;
+				z-index: 20;
+				overflow: hidden;
+				position: relative;
+			}
+			.header .hamburger {
+				z-index: 25 !important;
+			}
+			.header .header-content {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				z-index: 20;
+			}
+			.header .row {
+				align-items: center;
+			}
+			.header .user-settings {
+				height: 24pt;
+				position: absolute;
+			}
+			.header .user-settings div{
+				margin: 0 8pt;
+			}
+			.header .user-settings .lang div {
+				margin: 0 2pt;
+			}
+			.hamburger-button {
+				margin-right: 8pt;
+				width: var(--header-height); height: 100%;
+				stroke: #7c4202; stroke-width: 18;
+				stroke-linecap: round; cursor: pointer;
+			}
+			.header .header-search {
+				width: 240pt; height: 100%;
+				font-weight: 100;
+				background: #fded90;
+				border-radius: 12pt; overflow: hidden;
+				font-size: var(--header-font-size);
+				z-index: 25; justify-content: flex-end;
+				transition: width 0.5s;
+			}
+			.header-search.inactive {
+				width: 24pt;
+			}
+			.header-search input {
+				color: #7c4202;
+				padding: 0 10pt;
+				font-size: 11pt;
+				background: none;
+				border: none;
+			}
+			.header-search input:focus {
+				outline: none;
+				background: none;
+				border: none;
+			}
+			.header-search-outer {
+				display: none;
+			}
+			.header-search-outer.active {
+				display: initial;
+			}
+
+			@media screen and (min-width: 768px){
+				.header .header-content {
+					width: 50%;
+				}
+				.header .user-settings{
+					position: unset;
+				}
+				.header-search.inactive {
+					width: 240pt;
+				}
+			}
+
+			.content {
+				height: calc(100% - var(--header-height));
+				position: relative;
+			}
+
+			.content .setor-type .div {
+				/*border: solid 1px red;*/
+				height: 100%;
+			}
+
+			.carrousel-arrow {
+				flex-grow: 1;
+				position: relative;
+				z-index: 20;
+			}
+			.carrousel-arrow .arrow {
+				width: 30%; height: 15%;
+				transform: translate(-50%,-50%); 
+				position: absolute;
+			}
+			.carrousel-graphics {
+				cursor: pointer;
+				background: rgba(255,255,255,0);
+				transition: background-color 0.25s;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.carrousel-arrow .carrousel-graphics:hover {
+				background: rgba(255,255,255,0.05)
+			}
+			.carrousel-arrow .carrousel-graphics:active {
+				background: rgba(255,255,255,0.15);
+			}
+
+			.carrousel-container {
+				flex-grow: 2;
+			}
+
+			.carrousel-graphics {
+				position: absolute;
+				width: var(--carrousel-graphics-size); height: var(--carrousel-graphics-size);
+				border-radius: 50%;
+				transform: translate(-50%,-50%);
+				top: 50%; left: 50%;
+				animation: var(--throw-animation-duration) linear;
+			}
+
+			.carrousel-container .carrousel-items .carrousel-graphics {
+				box-shadow: 0 0 12pt rgba(0 0 0 / 10%);
+				background: rgb(209,207,36);
+			}
+
+			.carrousel-text {
+				width: fit-content; height: fit-content;
+				position: absolute;
+				transform: translate(-50%,-50%);
+				top: 50%; left: 50%;
+				font-size: var(--carrousel-font-size); font-weight: 600;
+				text-align: center;
+				animation: var(--throw-animation-duration) linear;
+			}
+
+			.carrousel-items  {
+				z-index: 10;
+				transition: all;
+			}
+			.carrousel-items .carrousel-graphics, .carrousel-items .carrousel-text {
+				cursor: pointer;
+			}
+
+			@keyframes textSize {
+				0% {font-size: var(--carrousel-font-size);}
+				30% {font-size: 8pt;}
+				100% {font-size: 8pt;}
+			}
+
+			.pop-up {
+				width: 100%; max-height: 95%;
+				transform: translate(-50%,-50%);
+				position: fixed;
+				top: 150%;
+				left: 50%;
+				background: white;
+				z-index: 45;
+				padding: 16pt 12pt;
+				border: solid 1pt #ccc;
+				border-radius: 12pt;
+				color: black;
+				transition: top 0.4s cubic-bezier(0.05,0.2,0.45,1.2);
+				display: flex;
+				flex-direction: column;
+			}
+			.pop-up.active {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+			}
+			.pop-up-element-container {
+				display: flex;
+				align-items: center;
+			}
+			.pop-up-element {
+				width: 0%; height: 240pt;
+				overflow-x: hidden;
+				overflow-y: scroll;
+				transition: width 0.2s;
+			}
+			.pop-up-element.active {
+				width: 100%;
+			}
+			.pop-up-element::-webkit-scrollbar {
+				display: none;
+			}
+			.pop-up-header {
+				height: 24pt;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			.pop-up-row {
+				height: 48pt;
+				padding: 4pt;
+				border-top: solid 1pt #ccc;
+				font-size: 10pt;
+			}
+			.pop-up-row h2 {
+				font-size: 12pt;
+				margin: auto 2pt;
+			}
+			.pop-up-row .row {
+				align-items: center;
+				width: 50%;
+			}
+			.pop-up-row.confirm button {
+				padding: 8pt 16pt; font-size: 14pt;
+				background-image: linear-gradient(90deg,#a2bf0f,rgb(208,211,20));
+				border-radius: 8pt;
+				border: none;
+				color: white;
+				width: auto; height: auto;
+			}
+			.pop-up-row.confirm .row {
+				justify-content: center;
+			}
+			.pop-up-row button, .pop-up-row input {
+				width: 24pt; height: 24pt;
+				text-align: center;
+			}
+			.pop-up-graphics {
+				width: 36pt;
+				height: 36pt;
+				border-radius: 50%;
+				background-image: linear-gradient(90deg,#a2bf0f,rgb(208,211,20));
+			}
+			.pop-up-quantity button {
+				margin: 0 4pt;
+				border: none;
+				background: #ddd;
+				cursor: pointer;
+				border-radius: 4pt;
+			}
+			.pop-up .card-container {
+				height: calc(100% - 24pt);
+				border-top: solid 1pt #ccc;
+				align-items: center;
+			}
+			.card-container .card {
+				height: 90%; width: 40%;
+				background: var(--color-11);
+				color: white;
+				border-radius: 12pt;
+				padding: 12pt;
+				cursor: pointer;
+				background-blend-mode: multiply;
+				align-items: center;
+			}
+			.card-container .card:hover {
+				background-color: var(--color-1);
+				/*cursor: default;*/
+			}
+			.card-container .card.active {
+				background-color: rgba(63,63,255,20%);
+			}
+
+			@media screen and (min-width: 768px){
+				.pop-up {
+					width: 480pt;
+				}
+				.pop-up-row {
+					height: 64pt;
+					font-size: initial;
+				}
+				.pop-up-row h2 {
+					font-size: 16pt;
+					margin: auto 12pt;
+				}
+				.pop-up-graphics {
+					width: 48pt;
+					height: 48pt;
+				}
+				.pop-up-quantity button {
+					margin: 0 8pt;
+				}
+				.pop-up-row button, .pop-up-row input {
+					width: 28pt; height: 28pt;
+				}
+			}
+			.pop-up-outer {
+				position: fixed;
+				top: 0; left: 0;
+				z-index: 0;
+			}
+			.pop-up-outer.active {
+				z-index: 40;
+			}
+
+			.sidebar-outer {
+				width: 100%; height: 100%;
+				position: fixed;
+				top: 0; left: 0;
+				z-index: 0;
+				backdrop-filter: blur(2px);
+			}
+			.sidebar-outer.active {
+				z-index: 50;
+			}
+			.sidebar {
+				width: 240pt; height: 100%;
+				position: fixed; left: 0; z-index: 60;
+				transform: translateX(-100%);
+				transition: transform 0.3s;
+				background: #7c4202;
+				font-weight: 600;
+			}
+			.sidebar.active {
+				transform: translateX(0);
+			}
+			.sidebar-header {
+				height: 64pt;
+				padding: 8pt 16pt;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.sidebar-items-container {
+				padding: 48pt 0;
+			}
+			.sidebar-items {
+				width: 100%; height: 48pt;
+				font-size: 14pt;
+				color: rgba(253,236,144,80%);
+				transition: color,background 0.2s;
+			}
+			.sidebar-items-container .sidebar-items:hover {
+				color: rgba(253,236,144,100%);
+			}
+			.sidebar-items-container .sidebar-items.active {
+				color: rgba(253,236,144,100%);
+				border-left: solid 6pt #9aaf3e;
+			}
+			.sidebar-items-container a, .sidebar-footer a {
+				width: 100%; height: 100%;
+				padding: 0 16pt 0 48pt;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				color: inherit;
+			}
+			.sidebar-footer a {
+				justify-content: flex-end;
+			}			
+			.sidebar-footer {
+				position: absolute;
+				bottom: 0;
+				background: #7c4202;
+				font-size: 11pt;
+				color: #fded90;
+				border-top: dashed 1pt #fded90;
+			}
+			.sidebar .back-button {
+				height: 18pt;
+				fill: none;
+				stroke: #fded90; stroke-width: 14;
+				stroke-linecap: round;
+				cursor: pointer;/*
+				position: absolute; left: calc(100% - 12pt);
+				transform: translateX(-100%);*/
+			}
+			a {
+				text-decoration: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.small-icon {
+				width: 20pt; height: 20pt;
+				margin: 0 6pt;
+			}
+			.small-icon svg {
+				height: 100%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="sidebar-outer" onclick="showSidebar(0)"></div>
+			<nav class="sidebar">
+				<div style="width: 100%; height: 100%; position: relative;">
+					<div class="sidebar-header">
+						<div class="sidebar-logo" style="width: 80%; height: 80%; border: dashed 1pt #fded90;">Logo</div>
+						<svg class="back-button" viewBox="0 0 128 128" onclick="showSidebar(0)">
+							<path d="M96 24 l-64 40 l64 40" />
+						</svg>
+					</div>
+					<div class="sidebar-items-container">
+						<div class="sidebar-items"><a href="../Dashboard/dashboard.html"><div>Dashboard</div></a></div>
+						<div class="sidebar-items active"><a href="#"><div>Setor Sampah</div></a></div>
+						<div class="sidebar-items"><a href="../Edukasi/edukasi.html"><div>Edukasi</div></a></div>
+					</div>
+					<div class="sidebar-footer sidebar-items">
+						<a href="../Home/home.html">
+							<div style="height: 12pt; margin: 0 4pt"><svg style="height: 100%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.22 15.07"><title>Asset 9</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M13.49,8.61l0,.05c-.07.06-.15.11-.21.17-.73.73-1.46,1.47-2.2,2.2a1.06,1.06,0,0,0-.34,1,1,1,0,0,0,.74.83,1.05,1.05,0,0,0,1.12-.3l4.2-4.21a1.08,1.08,0,0,0,0-1.65L14.45,4.31,12.63,2.5A1.08,1.08,0,1,0,11.1,4l2.29,2.3.14.15H6.46a1.08,1.08,0,1,0,0,2.15h7ZM0,7.53v4.32a3.22,3.22,0,0,0,3.21,3.21H5.35A1.49,1.49,0,0,0,5.71,15a1.08,1.08,0,0,0-.31-2.1H3.28a1.07,1.07,0,0,1-1.13-1.13V3.28A1.08,1.08,0,0,1,3.29,2.15h2A1.08,1.08,0,1,0,5.33,0H3.23a3.31,3.31,0,0,0-.55.05A3.21,3.21,0,0,0,0,3.26Z" fill="white"/><path d="M13.49,8.61h-7a1.08,1.08,0,1,1,0-2.15h7.07l-.14-.15L11.1,4A1.08,1.08,0,1,1,12.63,2.5l1.82,1.81L16.83,6.7a1.08,1.08,0,0,1,0,1.65l-4.2,4.21a1.05,1.05,0,0,1-1.12.3,1,1,0,0,1-.74-.83,1.06,1.06,0,0,1,.34-1c.74-.73,1.47-1.47,2.2-2.2.06-.06.14-.11.21-.17Z" fill="white"/><path d="M0,7.53V3.26A3.21,3.21,0,0,1,2.68.05a3.31,3.31,0,0,1,.55,0h2.1a1.08,1.08,0,1,1,0,2.15h-2A1.08,1.08,0,0,0,2.15,3.28v8.5a1.07,1.07,0,0,0,1.13,1.13H5.4A1.08,1.08,0,0,1,5.71,15a1.49,1.49,0,0,1-.36.05H3.21A3.22,3.22,0,0,1,0,11.85Z" fill="white"/></g></g></svg></div>
+							<div>Log Out</div>
+						</a>
+					</div>
+				</div>
+			</nav>
+			<div class="header">
+				<div class="hamburger header-content row" style="justify-content: flex-start;">
+					<svg class="hamburger-button" viewBox="0 0 128 128" onclick="showSidebar(1)">
+						<path stroke='white' d="M 16 32 h96" />
+						<path stroke='white' d="M 16 64 h80" />
+						<path stroke='white' d="M 16 96 h64" />
+					</svg>
+					<div class="header-search row inactive">
+						<input style="width: 100%; height: 100%;" placeholder="Cari apa kak?" />
+						<div style="height: calc(100% - 8pt); margin: 4pt 6pt 4pt 0" onclick="showSearchBar(1)">
+							<svg viewBox="0 16 128 128" style="height: 100%; stroke: var(--color-11); stroke-width: 12; stroke-linecap: round; fill: #fded90">
+								<path d="M112 112 l-32 -32" />
+								<circle cx="50%" cy="50%" r="30%" />
+							</svg>
+						</div>
+					</div>
+					<div class="header-search-outer" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;" onclick='showSearchBar(0)'></div>
+				</div>
+				<div class="user-settings header-content row" style="justify-content: flex-end; padding-right: 28pt;">
+					<div class="lang" style="height: min-content; display: flex;"><div>EN</div><div style="font-size: 9pt;">v</div></div>
+					<div class="small-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.75 18">
+							<title>lonceng</title>
+							<g id="Layer_2" data-name="Layer 2">
+								<g id="Layer_1-2" data-name="Layer 1">
+									<path d="M15.75,13.29v.42a1.27,1.27,0,0,1-1.42.92H1.3a1.08,1.08,0,0,1-.18,0,1.12,1.12,0,0,1-1.07-.78.5.5,0,0,0,0-.13v-.42a2.11,2.11,0,0,1,.51-.8A6.72,6.72,0,0,0,2.25,7.85a9.92,9.92,0,0,1,0-1.09A5.51,5.51,0,0,1,5.66,2.15a10.71,10.71,0,0,1,1.09-.38V1.1A1,1,0,0,1,7.12.3,3.55,3.55,0,0,1,7.66,0h.43s0,0,.05,0A1.12,1.12,0,0,1,9,1.17v.62l.13,0a5.55,5.55,0,0,1,4.06,3.65,6.53,6.53,0,0,1,.31,2.4,6.69,6.69,0,0,0,1.74,4.61A2.11,2.11,0,0,1,15.75,13.29Z" fill="white"/>
+									<path d="M7.59,18l-.4-.11a2.23,2.23,0,0,1-1.56-2v-.16h4.5A2.27,2.27,0,0,1,8.27,18a.35.35,0,0,0-.11,0Z" fill="white"/>
+								</g>
+							</g>
+						</svg>
+					</div>
+					<div style="height: min-content;">Profile</div>
+					<div class="small-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16.01">
+							<title>profil</title>
+							<g id="Layer_2" data-name="Layer 2">
+								<g id="Layer_1-2" data-name="Layer 1">
+									<path d="M0,14.66c.05-.29.09-.59.15-.88A5.56,5.56,0,0,1,4.59,9.59a8,8,0,0,1,1-.09H8.44a5.55,5.55,0,0,1,5.38,4.18c.07.28.1.57.15.86l0,.15v.56a1.06,1.06,0,0,1-1.17.76C8.91,16,5,16,1.08,16H.89a.93.93,0,0,1-.79-.51,2.44,2.44,0,0,1-.1-.24Z" fill="white"/>
+									<path d="M7.34,0a8.41,8.41,0,0,1,.87.19A4,4,0,1,1,6.55,0l.11,0Z" fill="white"/>
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="setor-type row">
+					<div id="info">Tekan untuk masukkan sampah ke keranjang</div>
+					<div class="carrousel-arrow">
+						<div class="carrousel-graphics" style="border: solid 1pt white; top: 50%; left: 0;" onclick="carrousel.swap(1)">
+							<div class="arrow" style="top: 50%; left: 70%;">
+								<svg viewBox="0 0 96 64" style="width: 100%; height: 100%; stroke: white; fill: none">
+									<path d="M 32 8 l -24 24 l 24 24 M 12 32 h76" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div id="main-carrousel" class="carrousel-container" style="position: relative;">
+					</div>
+					<div class="carrousel-arrow">
+						<div class="carrousel-graphics" style="border: solid 1pt white; top: 50%; left: 100%;" onclick="carrousel.swap(-1)">
+							<div class="arrow" style="top: 50%; left: 30%;">
+								<svg viewBox="0 0 96 64" style="width: 100%; height: 100%; stroke: white; fill: none">
+									<path d="M 64 8 l 24 24 l -24 24 M 84 32 h-76" />
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="setor-action row">
+					<div class="setor-info-container">
+						<div class="setor-info" style="display: flex; align-items: center; position: relative;">
+						</div>
+					</div>
+					<div class="setor-button" style="display: flex; align-items: center; padding: 12pt">
+						<button style="background: none; font-size: 16pt; padding: 8pt 12pt; border: none; border-bottom: solid 1pt white; color: white; cursor: pointer;" onclick="document.getElementsByClassName('pop-up')[0].classList.add('active'); popUp.elementSwap(0);/*document.getElementsByClassName('pop-up-outer')[0].classList.add('active')*/"><b>SETOR</b></button>
+					</div>
+				</div>
+			</div>
+			<!--div class="pop-up-outer"></div-->
+			<div class="pop-up">
+				<div style='width: 16pt; height: 16pt; position: absolute; left: calc(100% - 12pt); transform: translateX(-100%); z-index: 50; border-radius: 50%; background: var(--color-11);' onclick="this.parentElement.classList.remove('active')">
+					<svg viewBox="0 0 128 128" style="width: 100%; height: 100%; padding: 4pt; stroke: var(--color-6); stroke-width: 20; stroke-linecap: round; cursor: pointer;">
+						<path d="M16 16 l96 96 M112 16 l-96 96" />
+					</svg>
+				</div>
+				<div class="pop-up-element-container">
+					<div class="pop-up-element active">
+						<div class="pop-up-header row">
+							<p style="color: black; font-weight: 400;">Berat Sampah</p>
+						</div>
+					</div>
+					<div class="pop-up-element">
+						<div class="pop-up-header row">
+							<p style="color: black; font-weight: 400;">Metode Pembayaran</p>
+						</div>
+						<div class="card-container row" style="justify-content: space-evenly;">
+							<div class="card row" style="align-items: center; text-align: center;">
+								<div>
+									<h2>Tunai</h2>
+									<p>Uang hasil transaksi diberikan secara langsung</p>
+								</div>
+							</div>
+							<div class="card row" style="align-items: center; text-align: center;">
+								<div>
+									<h2>Saldo</h2>
+									<p>Uang hasil transaksi disimpan dalam bank sampah</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pop-up-element">
+						<div class="pop-up-header row">
+							<p style="color: black; font-weight: 400;">Metode Transaksi</p>
+						</div>
+						<div class="card-container row" style="justify-content: space-evenly;">
+							<div class="card row" style="align-items: center; text-align: center;">
+								<div class='row' style='position: relative; height: 100%; justify-content: center; align-items: center;'>
+									<div class='row' style='width: 100%;flex-direction: column; justify-content: center; align-items: center; position: absolute; top: 0;'>
+										<div style='width: 18pt; height: 18pt;'>
+											<svg style="height: 100%;" viewBox="0 0 25.57 28.72">
+												<title>Vespa putih</title>
+												<g id="Layer_2" data-name="Layer 2">
+													<g id="Layer_1-2" data-name="Layer 1">
+														<path d="M12.11,28.72a6.28,6.28,0,0,1-1.22-.51A2.48,2.48,0,0,1,9.82,26c0-.39,0-.78,0-1.14a8.89,8.89,0,0,1-1.35-.43,3.72,3.72,0,0,1-2.3-3.57q0-5,0-9.93a4.82,4.82,0,0,1,2.11-4l.22-.15H4.28c-.59,0-.86-.27-.86-.85V3.67c0-.54.16-.75.67-.88,1.69-.41,3.37-.86,5.07-1.22a1.65,1.65,0,0,0,.91-.51,3.87,3.87,0,0,1,5.56.24,1.1,1.1,0,0,0,.6.36c1.56.35,3.11.73,4.66,1.1.65.15.79.3.8,1s0,1.53,0,2.3a.7.7,0,0,1-.77.76H17.37A5.52,5.52,0,0,1,19,8.27a4.55,4.55,0,0,1,.9,2.74c0,3.29,0,6.58,0,9.87a4,4,0,0,1-3.41,3.91l-.25,0-.15-1.36.24-.06a2.63,2.63,0,0,0,2.17-2.57c0-3.28,0-6.55,0-9.82a3.38,3.38,0,0,0-2-3.08,2.57,2.57,0,0,0-.92-.2c-.31,0-.63,0-.95,0a3.34,3.34,0,0,0,1.83-.86,1.66,1.66,0,0,0-1.23.25,4.07,4.07,0,0,1-3.37.73A8.89,8.89,0,0,0,10,7.73,2.45,2.45,0,0,0,8.29,8.82a3.61,3.61,0,0,0-.77,2.32c0,3.22,0,6.43,0,9.65a2.48,2.48,0,0,0,.63,1.8,2.6,2.6,0,0,0,1.59.83,8.67,8.67,0,0,1,.3-1,2.6,2.6,0,0,1,2.4-1.51,3.58,3.58,0,0,1,1.91.31,2.41,2.41,0,0,1,1.38,2,21.23,21.23,0,0,1,0,3.19,2.43,2.43,0,0,1-1.85,2.19l-.26.09ZM12.72,1.4a2.45,2.45,0,0,0-2.48,2.47,2.5,2.5,0,0,0,5,.19A2.54,2.54,0,0,0,12.72,1.4Zm1.63,23.46c0-.46,0-.91,0-1.37a1.09,1.09,0,0,0-.86-1.08,4.76,4.76,0,0,0-1.41,0,1,1,0,0,0-.84.93c-.05,1-.05,2,0,2.94a1.07,1.07,0,0,0,1.06,1c.33,0,.65,0,1,0a1.11,1.11,0,0,0,1.08-1.1C14.36,25.76,14.35,25.31,14.35,24.86ZM8.92,3l-4,1a.2.2,0,0,0-.12.16c0,.4,0,.81,0,1.21H9.09A4,4,0,0,1,8.92,3Zm7.69.16a4.22,4.22,0,0,1-.21,2.18h3.89c0-.37,0-.72,0-1.08,0-.18-.07-.25-.25-.29-.44-.09-.87-.21-1.3-.31Z" fill="#fdf7d3"/>
+														<path d="M11.4,19.9l-.06.09a.7.7,0,0,1-.84.38.66.66,0,0,1-.48-.76,11.17,11.17,0,0,1,.24-1.26,9.48,9.48,0,0,1,.58-2.21,2.59,2.59,0,0,1,2.84-1.5,2.45,2.45,0,0,1,1.85,1.77c.28.75.51,1.5.76,2.26.09.28.22.55.29.84a.72.72,0,0,1-1.32.52.3.3,0,0,0-.24-.11c-.82,0-1.63.1-2.45.11A7.76,7.76,0,0,1,11.4,19.9Zm3.32-1.37a.51.51,0,0,0,0-.1c-.16-.47-.3-.94-.47-1.4a3.1,3.1,0,0,0-.25-.56,1,1,0,0,0-1.22-.39A1.37,1.37,0,0,0,12,17c-.15.49-.24,1-.37,1.53A8.35,8.35,0,0,0,14.72,18.53Z" fill="#fdf7d3"/>
+														<path d="M1.61,5H.69a.68.68,0,1,1,0-1.36H2.49A.68.68,0,1,1,2.48,5Z" fill="#fdf7d3"/>
+														<path d="M24,5h-.89a.69.69,0,0,1-.7-.69.69.69,0,0,1,.69-.67h1.82A.68.68,0,0,1,24.9,5Z" fill="#fdf7d3"/>
+														<path d="M13.76,3.91a1,1,0,0,1-1,1,1.05,1.05,0,0,1-1-1.05,1,1,0,0,1,1-1A1,1,0,0,1,13.76,3.91Z" fill="#fdf7d3"/>
+														<path d="M13.29,18.42a.75.75,0,0,1-.76-.76.78.78,0,0,1,.77-.77.79.79,0,0,1,.77.79A.76.76,0,0,1,13.29,18.42Z" fill="#fdf7d3"/>
+													</g>
+												</g>
+											</svg>
+										</div>
+										<h2>Diambil</h2>
+									</div>
+									<p style='height: min-content;'>Petugas mangambil sampah di rumah pelanggan</p>
+								</div>
+							</div>
+							<div class="card row" style="align-items: center; text-align: center;">
+								<div class='row' style='position: relative; height: 100%; justify-content: center; align-items: center;'>
+									<div class='row' style='width: 100%;flex-direction: column; justify-content: center; align-items: center; position: absolute; top: 0;'>
+										<div style='width: 18pt; height: 18pt;'>
+											<svg height="100%" viewBox="0 0 31.27 34.04"><title>kotak putih</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M15.9,25.51c0-2.7.07-5.39.09-8.09a.68.68,0,0,1,.43-.69L30.74,9.22c.53-.28.54-.27.53.32q-.11,8-.19,16.06a.74.74,0,0,1-.48.77L16.28,33.88c-.47.25-.49.24-.48-.29,0-2.69.07-5.39.1-8.08" fill="#fdf7d3"/><path d="M.1,17.19c0-2.7.07-5.39.1-8.09,0-.51,0-.52.47-.28l4.62,2.56a.53.53,0,0,1,.29.55c0,2,0,4-.08,6,0,.79.1.86.86.62.34-.11.69-.21,1-.34a.4.4,0,0,1,.56.19c.48.73,1,1.45,1.48,2.17.13.18.26.41.54.32s.29-.34.29-.59c0-1.85,0-3.71.07-5.57,0-.49,0-.5.44-.27,1.39.78,2.78,1.56,4.18,2.32a.56.56,0,0,1,.33.57q-.1,8.17-.2,16.35c0,.41-.05.43-.41.23l-14.36-8A.6.6,0,0,1,0,25.31c0-2.71.07-5.41.1-8.12m7.44,9.13c0-.2-.15-.3-.33-.39l-5-2.8A1.13,1.13,0,0,0,1.83,23a.31.31,0,0,0-.39.17.37.37,0,0,0,.1.46,2.07,2.07,0,0,0,.25.15l3,1.7,2.1,1.16c.32.17.6,0,.61-.31M3.71,26.2A.33.33,0,0,0,4.06,26a.39.39,0,0,0-.21-.45L2,24.48c-.22-.12-.45-.17-.59.09s0,.45.24.58l1.66.93a.71.71,0,0,0,.37.12" fill="#fdf7d3"/><path d="M6,10.87c-.1,0-.19-.08-.27-.13L1,8.15C.94,8.1.78,8.07.77,7.94s.16-.17.26-.22L15.57.08a.52.52,0,0,1,.56,0l4.62,2.57c.11.07.28.09.28.25s-.17.15-.27.21L6.31,10.7,6,10.87" fill="#fdf7d3"/><path d="M15.62,16.24a2,2,0,0,1-.27-.12l-4.24-2.36c-.08,0-.2-.08-.2-.18s.13-.16.21-.21L21.87,7.73l3.79-2a.61.61,0,0,1,.66,0c1.37.78,2.76,1.54,4.14,2.31.1.06.26.09.26.22s-.16.18-.27.24L23,12.41,16.14,16a1.42,1.42,0,0,1-.52.21" fill="#fdf7d3"/><path d="M10,13.1,9.76,13c-.9-.5-1.79-1-2.7-1.5-.28-.16-.2-.24,0-.36L18.92,4.94l2.77-1.45a.49.49,0,0,1,.53,0l2.64,1.47c.08,0,.2.08.2.19s-.14.14-.23.19l-9.57,5-5,2.6L10,13.1" fill="#fdf7d3"/><path d="M6.3,14.83c0-.82,0-1.65,0-2.47,0-.31.09-.35.36-.21.86.5,1.73,1,2.6,1.45a.55.55,0,0,1,.31.55c0,1.54,0,3.08-.07,4.63,0,.11.06.27-.08.31s-.16-.12-.22-.21c-.31-.44-.62-.88-.91-1.33a.52.52,0,0,0-.7-.24c-.31.13-.64.21-1,.32s-.41.05-.4-.28c0-.84,0-1.68,0-2.52" fill="#fdf7d3"/></g></g></svg>
+										</div>
+										<h2>Diantar</h2>
+									</div>
+									<p style='height: min-content;'>Pelanggan mengantarkan sampah ke bank sampah</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pop-up-row row" style="justify-content: space-between; flex-wrap:wrap">
+			<div class="pop-up-type row" style="align-items: center; justify-content: center"><h2>Total</h2></div>
+			<div class="pop-up-quantity row" style="align-items: center; justify-content: center;"></div>
+			<div class="pop-up-total row" style="justify-content: flex-end;"><div class="total">Rp. 0</div></div>
+			<div class="pop-up-row row" style="justify-content:center; width:100%">
+				<button style="width: 48pt"><b>SETOR</b></button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		const priceData = [900,100,200,1000,200,200,500,300,600,1000]
+		const textData = [
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+			'High-Density Polyethylene adalah Plastik berwarna putih susu ini digunakan sebagai botol deterjen dan botol shampoo.',
+			'Akses internet bagi tamu yang telah memiliki kode akses (OTP) internet. Untuk mendapatkan kode OTP dapat menghubungi dosen atau tendik ITS.',
+			'Sign in to see reasons why you may or may not like this based on your games, friends, and curators you follow.',
+			"It's time to dust off your hammer - House Flipper is back in a brand-new fashion! Buy and renovate run-down houses! Or maybe you want to build new ones? Now you can!",
+			'Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content.',
+			'PESAT menyediakan halaman untuk melihat kenaikan atau penurunan harga dari masing-masing jenis sampah',
+			'Hari ini tidak ada Sistem Kontrol, melanjutkan PBL masing-masing, terimakasih..',
+			'Study Abroad Together (SAT) League is a competition based on an English proficiency test by Kelompok Studi Mahasiswa (KSM) Manajemen Bisnis ITS for whom have an interest in studying abroad.',
+			'Akses internet bagi mahasiswa, dosen dan tendik yang memiliki akun Integra. Untuk memberikan akses internet kepada tamu, klik tautan ini. '
+		]
+
+		let c,d;
+		let carrousel = {
+			doc: document.getElementById("main-carrousel"),
+			textData: ["PET","HDPE","PVC","LDPE","PP","PS","OTHER","HVS","KARTON","KARDUS"],
+			pos: 50,
+			init: function(){
+				this.tagIndex = Array(this.textData.length); this.tagIndex.fill(0)
+				this.tagIndex.forEach(function(e1,i1,arr1){arr1[i1] = (i1+Math.ceil(arr1.length/2))%arr1.length})
+				this.placeTag();
+				this.posTag();
+			},
+			placeTag: function(){
+				for (c=0;c<this.textData.length;c++){
+					htmlTag = '<div class="carrousel-items" style="position: absolute; width: 100%; height: 100%; top: 0;"><div class="carrousel-graphics" onclick="carrousel.throw('+c+',this)" onanimationend="carrousel.hide('+c+',this)"><div class="carrousel-text"><h1>'+this.textData[c]+'</h1></div></div></div>'
+					this.doc.innerHTML += htmlTag
+					info ='<div class="trash-info">'
+					info +=	'<h2>Rp '+priceData[c]+'</h2>'
+					info +=	'<div class="stars">'
+					info +=		'<svg id="stars" style="height: 100%; fill: white;" viewBox="0 0 640 128">'
+					info +=			'<path d="M 64 16 l 28.21 86.83 l -73.86 -53.66 h91.3 l-73.86 53.66 z" />'
+					info +=			'<path d="M 192 16 l 28.21 86.83 l -73.86 -53.66 h91.3 l-73.86 53.66 z" />'
+					info +=			'<path d="M 320 16 l 28.21 86.83 l -73.86 -53.66 h91.3 l-73.86 53.66 z" />'
+					info +=			'<path d="M 448 16 l 28.21 86.83 l -73.86 -53.66 h91.3 l-73.86 53.66 z" />'
+					info +=			'<path d="M 576 16 l 28.21 86.83 l -73.86 -53.66 h91.3 l-73.86 53.66 z" />'
+					info +=		'</svg>'
+					info +=	'</div>'
+					info +=	'<p style="font-weight: 100;">'+textData[c]+'</p>'
+					info +='</div>'
+					document.getElementsByClassName("pop-up-element")[0].innerHTML += "<div class='pop-up-row-container'></div>"
+					document.getElementsByClassName("setor-info")[0].innerHTML += info
+					if(c==this.textData.length-1){
+						document.getElementsByClassName("pop-up")[0].innerHTML += "<div class='pop-up-row-container' style='flex-wrap: wrap'><div style='color:#999; justify-content: center; align-items: center' class='pop-up-row row'><div style='height: fit-content'>Tidak ada jenis sampah yang dipilih</div></div></div>"
+					}
+				}
+			},
+			posTag: function(isNotFirst){
+				for (c=0;c<this.tagIndex.length && this.tagIndex[0] !== undefined;c++){
+					ind = (c-Math.floor(this.tagIndex.length/2))
+					if (ind){
+						if (Math.abs(ind)==1 && isNotFirst){
+							this.doc.children[this.tagIndex[c]].style.transitionDuration = "0.3s"
+						document.getElementsByClassName("trash-info")[this.tagIndex[c]].classList.remove('active')
+						} else {
+							this.doc.children[this.tagIndex[c]].style.transitionDuration = null
+						}
+						this.doc.children[this.tagIndex[c]].style.left = ((ind/Math.abs(ind))*200)+"%"
+					} else {
+						document.getElementsByClassName("trash-info")[this.tagIndex[c]].classList.add('active')
+						console.log(this.tagIndex[c])
+						if (isNotFirst){
+							this.doc.children[this.tagIndex[c]].style.transitionDuration = "0.3s"
+						}
+						this.doc.children[this.tagIndex[c]].style.left = 0
+					}
+				}
+			},
+			swap: function(direction){
+				if (direction < 0){
+					data = this.tagIndex[0]
+					this.tagIndex.shift()
+					this.tagIndex.push(data)
+				} else {
+					data = this.tagIndex[this.tagIndex.length-1]
+					this.tagIndex.pop()
+					this.tagIndex.unshift(data)
+				}
+				console.log(this.tagIndex)
+				this.posTag(1)
+			},
+			throw: function(index,obj){
+				obj.style.animationName = ''
+				obj.children[0].style.animationName = ""
+				throwTime = setTimeout(thr,10)
+				function thr(){
+					obj.style.animationName = "throw"
+					obj.children[0].style.animationName = "textSize"
+				}
+				this.insertTrash(index)
+				
+			},
+			hide: function(index,obj){
+				this.doc.children[index].hidden = true
+				this.tagIndex.forEach(function(e2,i2,arr2){
+					if (e2==index){arr2.splice(i2,1)}
+				})
+				this.posTag(1)
+				document.getElementsByClassName("trash-info")[index].classList.remove('active')
+			},
+			insertTrash: function(index){
+				add = index
+				if (index > 6){add = 7}
+				node = '<div class="pop-up-row row" style="justify-content: space-between;">'
+				node += 	'<div class="pop-up-type row">'
+				node += 		'<div class="pop-up-graphics" style="position: relative;"><div style="position: absolute; top:50%;left:50%;transform: translate(-50%,-60%); color: white; font-size: 24pt;">&#'+(9843+add)+'</div></div>'
+				node += 		'<h2>'+this.textData[index]+'</h2>'
+				node += 	'</div>'
+				node += 	'<div class="pop-up-quantity row" style="justify-content: center;">'
+				node += 		'<button onclick="updatePrice('+index+',this,1)">+</button>'
+				node += 		'<input type="number" name="quantity-1" value="1" min="1" onchange="updatePrice('+index+',this,0)" />'
+				node += 		'<button onclick="updatePrice('+index+',this,-1)">-</button>'
+				node += 		'<div>Kg</div>'
+				node += 	'</div>'/*
+				node += 	'<div class="pop-up-total row" style="justify-content: space-between;">'
+				node += 		'<div><b>x</b></div>'
+				node += 		'<div class="price">'+priceData[index]+'</div>'
+				node += 		'<div><b>=</b></div>'
+				node += 		'<div class="total">Rp. '+priceData[index]+'</div>'
+				node += 	'</div>'*/
+				node += '</div>'
+				document.getElementsByClassName("pop-up-row-container")[index].innerHTML = node
+				//document.getElementsByClassName("pop-up-row-container")[this.textData.length].hidden = true
+				if (this.tagIndex.length == this.textData.length){
+					document.getElementsByClassName("pop-up-row-container")[this.textData.length].innerHTML = '<div class="pop-up-row row" style="justify-content: space-between; flex-wrap:wrap"><div class="pop-up-type row" style="align-items: center; justify-content: center"><h2>Total</h2></div><div class="pop-up-total row" style="justify-content: flex-end;"><div class="total">Rp. 0</div></div></div>'
+					document.getElementsByClassName("pop-up-row-container")[this.textData.length].innerHTML += '<div class="pop-up-row row confirm" style="align-items:center; width:100%"><div class="pop-up-controller row"><button onclick="popUp.elementSwap(-1)"><b>&lt</b></button></div><div class="pop-up-controller row"><button><b>SETOR</b></button></div><div class="pop-up-controller row"><button onclick="popUp.elementSwap(1)"><b>&gt</b></button></div><div>'
+				}
+				updatePrice(index)
+
+			}
+		}
+
+		function loop(){
+			if(carrousel.pos < 100){
+				carrousel.pos++
+				carrousel.throwTarget.style.top = carrousel.pos + "%"
+			} else {
+				clearInterval(carrousel.throwLoop)
+			}
+		}
+
+		var keyframes = '@keyframes throw{'
+		keyframes += '0% {height: var(--carrousel-graphics-size); width: var(--carrousel-graphics-size);}'
+		keyframes += '15% {height: 50px; width: 50px;}'
+		for (c=20;c<=100;c++){
+			endState = ''
+			if(c==100){endState = "height: 50px; width: 50px;"}
+			k = c-20
+			keyframes += c+"% {top: "+(50+0.2*((k**2)/3-k*20))+"%; left: "+(50+k*2/3)+"%; "+endState+"}"
+		}
+		keyframes += "}"
+
+		document.head.getElementsByTagName('style')[0].innerHTML+=keyframes
+
+		var totalPrice = new Array(carrousel.textData.length); totalPrice.fill(0)
+
+		function updatePrice(index,obj,add){
+			doc = document.getElementsByClassName("pop-up-row-container")[index];
+			console.log(obj)
+			if (obj){
+				val = obj.parentElement.getElementsByTagName("input")[0].value
+			} else {
+				val = doc.getElementsByTagName("input")[0].value
+			}
+			if(add){
+				val = Number(val)+add
+				obj.parentElement.getElementsByTagName("input")[0].value = val
+			}
+			totalPrice[index] = (Number(val)*priceData[index])
+			//doc.getElementsByClassName("total")[0].innerHTML = "Rp. " + totalPrice[index]
+			newTotalPrice = 0
+			totalPrice.forEach(function(e1){
+				newTotalPrice += e1
+			})
+			document.getElementsByClassName("pop-up-row-container")[totalPrice.length].getElementsByClassName("total")[0].innerHTML = "Rp. " + newTotalPrice
+		}
+
+		function showSidebar(state){
+			doc1 = document.getElementsByClassName('sidebar-outer')[0]
+			doc2 = document.getElementsByClassName('sidebar')[0]
+			if (state){
+				doc1.classList.add('active')
+				doc2.classList.add('active')
+			} else {
+				doc1.classList.remove('active')
+				doc2.classList.remove('active')
+			}
+		}
+
+		carrousel.init()
+
+		popUp = {
+			init: function(){
+				doc = document.getElementsByClassName("pop-up")[0]
+				this.buttons = doc.getElementsByClassName("pop-up-controller")
+				this.elements = doc.getElementsByClassName("pop-up-element")
+				this.indexLength = this.elements.length
+			},
+			index: 0,
+			elementSwap: function(direction){
+				this.elements[this.index].classList.remove("active")
+				this.index += direction
+				this.elements[this.index].classList.add("active")
+				if (this.index == 0){
+					this.buttons[0].style.visibility = "hidden"
+				} else {
+					this.buttons[0].style.visibility = "visible"
+				}
+				if (this.index == this.indexLength-1){
+					this.buttons[2].style.visibility = "hidden"
+				} else {
+					this.buttons[2].style.visibility = "visible"
+				}
+			},
+			choice: [[0,0],[0,0]]
+		}
+		popUp.init()
+
+	</script>
+</html>

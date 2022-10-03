@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PESAT</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Swiper CSS -->
+        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+
+	<header>
+		<div class="navigator">
+			<a href="#" class="logo"><img src="img/1x/logo.png"></a>
+			<ul>
+				<li><a href="#"><div class="link-Beranda">Beranda</div></a></li>
+				<li><a href="#fitur-scrool"><div class="link-Beranda">Fitur</div></a></li>
+				<li><a href="#"><div class="link-login" id="masuk">Masuk</div></a></li>
+			</ul>
+			<a href="#" class="titik2"><img src="img/titik2.png" onclick="toggleMenu()"></a>
+		</div>
+
+		<div class="sub-menu-warp" id="subMenu">
+			<div class="sub-menu">
+				<a href="#" class="sub-menu-link" id="sub-menu-bg">
+					<img src="icon/out.png">
+					<p>Masuk</p>
+					<span></span>
+				</a>
+					<a href="#" class="sub-menu-link">
+					<p>Beranda</p>
+					<span></span>
+				</a>
+					<a href="#fitur-scrool" class="sub-menu-link">
+					<p>Fitur</p>
+					<span></span>
+				</a>
+			</div>
+		</div>
+
+		<div class="popup">
+			<div class="close-btn">&times;</div>
+			<div class="form">
+				<h2>Log In</h2>
+				<div class="form-element">
+					<label for="email">Email</label>
+					<input type="text" id="email" placeholder="Enter email">
+				</div>
+	
+				<div class="form-element">
+					<label for="password">Password</label>
+					<input type="password" id="password" placeholder="Enter password">
+				</div>
+	
+				<div class="form-element">
+					<a href="#">Forgot Password?</a>
+				</div>
+	
+				<div class="form-element">
+					<a href="../Dashboard/dashboard.html">
+					<button>Submit</button>
+					</a>
+				</div>
+	
+				<div class="form-element">
+					<div class="register">
+						<p>Not Registered yet?</p>
+						<p id="registration">Register Account</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup-register">
+			<div class="close-btn-register">&times;</div>
+			<div class="form-register">
+				<h2>Create Account</h2>
+				<div class="form-element-register">
+					<label for="name">Name</label>
+					<input type="text" id="name" placeholder="Enter your name">
+				</div>
+
+				<div class="form-element-register">
+					<label for="email">Email</label>
+					<input type="text" id="email" placeholder="Enter your email">
+				</div>
+	
+				<div class="form-element-register">
+					<label for="password">Password</label>
+					<input type="password" id="password" placeholder="Enter your password">
+				</div>
+
+				<div class="form-element-register">
+					<label for="password">Repeat Your Password</label>
+					<input type="password" id="password" placeholder="Confirm password">
+				</div>
+		
+				<div class="form-element-register">
+					<button>Sign Up</button>
+				</div>
+	
+				<div class="form-element">
+					<div class="register-account">
+						<p>Have an account?</p>
+						<p id="login-back">Login</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<section>
+		<img src="img/building.png" id="building">
+		<img src="img/cloud.png" id="cloud">
+		<img src="img/skyline.png" id="skyline">
+		<img src="img/truck.png" id="truck">
+		<img src="img/sun.png" id="sun">
+		<img src="img/brush.png" id="brush">
+		<div class="all-judul">
+			<div class="judul-text">
+				<h2 id="judul">Pengolahan Sampah<br>Terintegrasi</h2>
+				<p id="judul-bawah">Bersama Menjaga Lingkungan Yang Bersih</p>
+			</div>
+			<div class="judul-btn">
+				<a href="#sec" id="btn">Android</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="bg-hijau">
+		<div class="about-us">
+			<div class="about-us-text">
+				<h1>Tentang PESAT</h1>
+				<p>PESAT merupakan sistem pengolahan terintegrasi yang memiliki fungsi sebagai bank sampah dan notifikasi untuk petugas kolektif sampah agar aktivitasnya lebih efektif. Kegiatan ini tentunya tidak hanya sekedar pembuatan software kolektif pengolahan sampah, namun juga ada ajakan, himbauan, atau sosialisasi terkait pentingnya menjaga kebersihan lingkungan agar sampah - sampah khususnya sampah plastik tidak tumbuh tak terkendali di lingkungan warga. </p>
+			</div>
+			<div class="fitur">
+			<iframe id="youtube-link" width="560" height="315" src="https://www.youtube-nocookie.com/embed/O91DT1pR1ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		</div>
+	
+
+		<div class="carddesk" id="fitur-scrool">
+			<h2 id="fitur-carddesk">Fitur-Fitur PESAT</h2>
+			<div class="slide-container swiper">
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper" id="card-tengah">
+                    <div class="card swiper-slide" id="kecilin">
+                        <div class="card-swiper-image">
+                            <img src="images/map.png">
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">1. Jemput Sampah</h2>
+                            <p class="description">Fitur ini berfungsi untuk menjemput sampah dari pelanggan oleh petugas bank sampah</p>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide" id="kecilin">
+                        <div class="card-swiper-image">
+                            <img src="images/coin.png">
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">2. Transparansi Harga</h2>
+                            <p class="description">PESAT menyediakan halaman untuk melihat kenaikan atau penurunan harga dari masing-masing jenis sampah</p>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide" id="kecilin">
+                        <div class="card-swiper-image">
+                            <img src="images/lamp.png">
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">3.  Edukasi sampah</h2>
+                            <p class="description">Informasi mengenai jenis sampah dan penanganan sampah yang harus dilakukan</p>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide" id="kecilin">
+                        <div class="card-swiper-image">
+                            <img src="images/bank.png">
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">4. tabungan</h2>
+                            <p class="description">Fitur ini berfungsi untuk menyimpan uang pelanggan setelah melakukan transaksi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+	</div>
+
+		<div class="footer">
+			<div class="warp">
+				<div class="logo-bawah">
+					<a href="#"><img src="img/1x/logo_putih.png"></a>
+				</div>
+				<div class="pp">
+					<div class="c">
+						<h3>Connect Us</h3>
+							<div class="social-menu">
+								<ul>
+									<li><a href=""><i class="fa fa-facebook"></i></a>
+									</li>
+									<li><a href=""><i class="fa fa-instagram"></i></a>
+									</li>
+									<li><a href=""><i class="fa fa-youtube"></i></a>
+									</li>
+									<li><a href=""><i class="fa fa-linkedin"></i></a>
+									</li>
+								</ul>
+							</div>
+					</div>
+					<div class="g">
+						<h3>Language</h3>
+						<ul>
+							<li>
+								<a href="#"><img src="icon/IND.png"></a>
+							</li>
+							<li>
+								<a href="#"><img src="icon/ENG.png"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+			<div class="warp2">
+				<div class="address">
+					<h2>Our Address</h2>
+					<p>Institut Teknologi Sepuluh Nopember (ITS) Kampus ITS, Keputih, Surabaya 60111 INDONESIA</p>
+				</div>
+				<div class="contact">
+					<h2>Contact</h2>
+					<p>Telp: (031) 5947319, ext: 1276</p>
+					<p>Fax.: (031) 5947319</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</body>
+	<script>
+		let building = document.getElementById('building');
+		let cloud = document.getElementById('cloud');
+		let skyline = document.getElementById('skyline');
+		let truck = document.getElementById('truck');
+		let sun = document.getElementById('sun');
+		let btn = document.getElementById('btn');
+		let brush = document.getElementById('brush');
+		let header = document.querySelector('header');
+	
+		window.addEventListener('scroll',function(){
+			let value = window.scrollY;
+			cloud.style.left = value * -1 + 'px';
+			skyline.style.top = value * 0.5 + 'px';
+			truck.style.left = value * -0.5 + 'px';
+			sun.style.top = value * 0.5 + 'px';
+			mountains_top = value * 0 + 'px';
+			btn.style.marginTop = value * 0.7 + 'px';
+			header.style.top = value * 0.5 + 'px';
+		})
+	</script>
+	<script type="text/javascript">
+		let subMenu = document.getElementById("subMenu");
+		function toggleMenu(){
+			subMenu.classList.toggle("open-menu");
+		}
+	</script>
+	<!--ionicons-->
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<script src="app.js"></script>
+	 <!-- Swiper JS -->
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
+</html>
