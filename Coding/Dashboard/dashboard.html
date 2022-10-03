@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar-outer" onclick="showSidebar(0)"></div>
+      <nav class="sidebar">
+        <div style="width: 100%; height: 100%; position: relative">
+          <div class="sidebar-header">
+            <div
+              class="sidebar-logo"
+              style="width: 80%; height: 80%; border: dashed 1pt #fded90"
+            >
+              Logo
+            </div>
+            <svg
+              class="back-button"
+              viewBox="0 0 128 128"
+              onclick="showSidebar(0)"
+            >
+              <path d="M96 24 l-64 40 l64 40" />
+            </svg>
+          </div>
+          <div class="sidebar-items-container">
+            <div class="sidebar-items active">
+              <a href="#"><div>Dashboard</div></a>
+            </div>
+            <div class="sidebar-items">
+              <a href="#"><div>Setor Sampah</div></a>
+            </div>
+            <div class="sidebar-items">
+              <a href="#"><div>Edukasi</div></a>
+            </div>
+          </div>
+          <div class="sidebar-footer sidebar-items">
+            <a href="#">
+              <div style="height: 12pt; margin: 0 4pt">
+                <svg
+                  style="height: 100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17.22 15.07"
+                >
+                  <title>Asset 9</title>
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <path
+                        d="M13.49,8.61l0,.05c-.07.06-.15.11-.21.17-.73.73-1.46,1.47-2.2,2.2a1.06,1.06,0,0,0-.34,1,1,1,0,0,0,.74.83,1.05,1.05,0,0,0,1.12-.3l4.2-4.21a1.08,1.08,0,0,0,0-1.65L14.45,4.31,12.63,2.5A1.08,1.08,0,1,0,11.1,4l2.29,2.3.14.15H6.46a1.08,1.08,0,1,0,0,2.15h7ZM0,7.53v4.32a3.22,3.22,0,0,0,3.21,3.21H5.35A1.49,1.49,0,0,0,5.71,15a1.08,1.08,0,0,0-.31-2.1H3.28a1.07,1.07,0,0,1-1.13-1.13V3.28A1.08,1.08,0,0,1,3.29,2.15h2A1.08,1.08,0,1,0,5.33,0H3.23a3.31,3.31,0,0,0-.55.05A3.21,3.21,0,0,0,0,3.26Z"
+                        fill="#fded90"
+                      />
+                      <path
+                        d="M13.49,8.61h-7a1.08,1.08,0,1,1,0-2.15h7.07l-.14-.15L11.1,4A1.08,1.08,0,1,1,12.63,2.5l1.82,1.81L16.83,6.7a1.08,1.08,0,0,1,0,1.65l-4.2,4.21a1.05,1.05,0,0,1-1.12.3,1,1,0,0,1-.74-.83,1.06,1.06,0,0,1,.34-1c.74-.73,1.47-1.47,2.2-2.2.06-.06.14-.11.21-.17Z"
+                        fill="#fded90"
+                      />
+                      <path
+                        d="M0,7.53V3.26A3.21,3.21,0,0,1,2.68.05a3.31,3.31,0,0,1,.55,0h2.1a1.08,1.08,0,1,1,0,2.15h-2A1.08,1.08,0,0,0,2.15,3.28v8.5a1.07,1.07,0,0,0,1.13,1.13H5.4A1.08,1.08,0,0,1,5.71,15a1.49,1.49,0,0,1-.36.05H3.21A3.22,3.22,0,0,1,0,11.85Z"
+                        fill="#fded90"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div>Log Out</div>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div class="header">
+        <div
+          class="hamburger header-content row"
+          style="justify-content: flex-start"
+        >
+          <svg
+            class="hamburger-button"
+            viewBox="0 0 128 128"
+            onclick="showSidebar(1)"
+          >
+            <path d="M 16 32 h96" />
+            <path d="M 16 64 h80" />
+            <path d="M 16 96 h64" />
+          </svg>
+          <div class="header-search row inactive">
+            <input
+              style="width: 100%; height: 100%"
+              placeholder="Cari apa kak?"
+            />
+            <div
+              style="height: calc(100% - 8pt); margin: 4pt 6pt 4pt 0"
+              onclick="showSearchBar(1)"
+            >
+              <svg
+                viewBox="0 16 128 128"
+                style="
+                  height: 100%;
+                  stroke: #7c4202;
+                  stroke-width: 12;
+                  stroke-linecap: round;
+                  fill: #fded90;
+                "
+              >
+                <path d="M112 112 l-32 -32" />
+                <circle cx="50%" cy="50%" r="30%" />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="header-search-outer"
+            style="width: 100%; height: 100%; position: fixed; top: 0; left: 0"
+            onclick="showSearchBar(0)"
+          ></div>
+        </div>
+        <div
+          class="user-settings header-content row"
+          style="justify-content: flex-end; padding-right: 28pt"
+        >
+          <div class="lang" style="height: min-content; display: flex">
+            <div>EN</div>
+            <div style="font-size: 9pt">v</div>
+          </div>
+          <div class="small-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.75 18">
+              <title>lonceng</title>
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path
+                    d="M15.75,13.29v.42a1.27,1.27,0,0,1-1.42.92H1.3a1.08,1.08,0,0,1-.18,0,1.12,1.12,0,0,1-1.07-.78.5.5,0,0,0,0-.13v-.42a2.11,2.11,0,0,1,.51-.8A6.72,6.72,0,0,0,2.25,7.85a9.92,9.92,0,0,1,0-1.09A5.51,5.51,0,0,1,5.66,2.15a10.71,10.71,0,0,1,1.09-.38V1.1A1,1,0,0,1,7.12.3,3.55,3.55,0,0,1,7.66,0h.43s0,0,.05,0A1.12,1.12,0,0,1,9,1.17v.62l.13,0a5.55,5.55,0,0,1,4.06,3.65,6.53,6.53,0,0,1,.31,2.4,6.69,6.69,0,0,0,1.74,4.61A2.11,2.11,0,0,1,15.75,13.29Z"
+                    fill="#99b90e"
+                  />
+                  <path
+                    d="M7.59,18l-.4-.11a2.23,2.23,0,0,1-1.56-2v-.16h4.5A2.27,2.27,0,0,1,8.27,18a.35.35,0,0,0-.11,0Z"
+                    fill="#99b90e"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div style="height: min-content">Profile</div>
+          <div class="small-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16.01">
+              <title>profil</title>
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path
+                    d="M0,14.66c.05-.29.09-.59.15-.88A5.56,5.56,0,0,1,4.59,9.59a8,8,0,0,1,1-.09H8.44a5.55,5.55,0,0,1,5.38,4.18c.07.28.1.57.15.86l0,.15v.56a1.06,1.06,0,0,1-1.17.76C8.91,16,5,16,1.08,16H.89a.93.93,0,0,1-.79-.51,2.44,2.44,0,0,1-.1-.24Z"
+                    fill="#99b90e"
+                  />
+                  <path
+                    d="M7.34,0a8.41,8.41,0,0,1,.87.19A4,4,0,1,1,6.55,0l.11,0Z"
+                    fill="#99b90e"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="rounded-background">
+          <div class="wrap-content">
+            <div class="row-1">
+              <div class="card-rekening">
+                <img src="img/Asset 3.png" alt="" id="img-rekening" />
+                <div class="tanggal rek-text">
+                  21/07/22
+                  <a href="#rekening">View</a>
+                </div>
+                <div class="no-rekening rek-text">1234 0432 4356</div>
+                <div class="title-username rek-text">User name</div>
+                <div class="username rek-text">Udin Bjorka</div>
+              </div>
+              <div class="three-card">
+                <div class="card-saldo card-item">
+                  <div class="line-card-weight"></div>
+                  <a href="#saldo">
+                    <div class="wrap-icon">
+                      <img src="img/Asset 8.png" alt="" />
+                    </div>
+                  </a>
+                  <div class="title">Saldo</div>
+                  <div class="saldo">Rp. 5000</div>
+                </div>
+                <div class="flexible">
+                  <div class="card-masuk card-item">
+                    <div class="title">Pemasukan Akhir</div>
+                    <div class="saldo">Rp. 5000</div>
+                    <div class="line-card"></div>
+                    <div class="title">Pemasukan / Bulan</div>
+                    <div class="saldo">Rp. 5000</div>
+                  </div>
+                  <div class="card-keluar card-item">
+                    <div class="title">Pengeluaran Akhir</div>
+                    <div class="saldo">Rp. 5000</div>
+                    <div class="line-card"></div>
+                    <div class="title">Pengeluaran / Bulan</div>
+                    <div class="saldo">Rp. 5000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-2">
+              <div class="wrap-riwayat">
+                <div class="wrap-riwayat-header">
+                  <div class="title-riwayat">Riwayat Transaksi</div>
+                  <div class="filter">
+                    <div class="box">
+                      <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                        <option>Option 4</option>
+                        <option>Option 5</option>
+                      </select>
+                    </div>
+                    <i class="fa-solid fa-arrow-down-a-z filter-icon"></i>
+                  </div>
+                </div>
+                <div class="tables-content">
+                  <table>
+                    <tr>
+                      <th>Jenis Sampah</th>
+                      <th>Tanggal</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <i class="fa-solid fa-circle"></i>
+                        HVS
+                      </td>
+                      <td>22/09/2022</td>
+                      <td>500 kg</td>
+                      <td>Berhasil</td>
+                      <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="grafik"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    function showSidebar(state) {
+      doc1 = document.getElementsByClassName("sidebar-outer")[0];
+      doc2 = document.getElementsByClassName("sidebar")[0];
+      if (state) {
+        doc1.classList.add("active");
+        doc2.classList.add("active");
+      } else {
+        doc1.classList.remove("active");
+        doc2.classList.remove("active");
+      }
+    }
+    function showSearchBar(state) {
+      if (state) {
+        if (
+          document
+            .getElementsByClassName("header-search")[0]
+            .classList.contains("inactive") &&
+          window.innerHeight < 768
+        ) {
+          document
+            .getElementsByClassName("header-search")[0]
+            .classList.remove("inactive");
+          document
+            .getElementsByClassName("header-search-outer")[0]
+            .classList.add("active");
+        }
+      } else {
+        document
+          .getElementsByClassName("header-search")[0]
+          .classList.add("inactive");
+        document
+          .getElementsByClassName("header-search-outer")[0]
+          .classList.remove("active");
+      }
+    }
+  </script>
+</html>
